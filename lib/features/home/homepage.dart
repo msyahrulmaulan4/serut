@@ -1,94 +1,119 @@
-// lib/features/home/homepage.dart
 import 'package:flutter/material.dart';
+import 'package:serut/features/home/bantuan.dart';
+import 'package:serut/features/home/cekstatus.dart';
+import 'package:serut/features/home/profile.dart';
+import 'package:serut/features/home/submissionform.dart';
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications_outlined, color: Colors.black),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.menu, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Selamat Datang,',
-                style: TextStyle(fontSize: 16),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Welcome text
+            const Text(
+              "Selamat Datang,",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
               ),
-              Text(
-                'Maulana',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            const Text(
+              "Muhammad Syahrul Maulana",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
-              SizedBox(height: 40),
-              GridView.count(
-                shrinkWrap: true,
+            ),
+            const SizedBox(height: 30), // Space between text and grid
+
+            // Grid layout for icons
+            Expanded(
+              child: GridView.count(
                 crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                crossAxisSpacing: 20.0,
+                mainAxisSpacing: 20.0,
                 children: [
-                  _buildMenuItem(
-                    icon: 'assets/icons/pengajuan.png',
-                    label: 'Pengajuan',
-                    onTap: () {},
+                  // Pengajuan
+                  buildGridItem(
+                    image: 'assets/pengajuan.png',
+                    title: 'Pengajuan',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SubmissionForm()),
+                    ),
                   ),
-                  _buildMenuItem(
-                    icon: 'assets/cek_status.png',
-                    label: 'Cek Status',
-                    onTap: () {},
+                  // Cek Status
+                  buildGridItem(
+                    image: 'assets/cek_status.png',
+                    title: 'Cek Status',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CekStatusScreen()),
+                    ),
                   ),
-                  _buildMenuItem(
-                    icon: 'assets/akun.png',
-                    label: 'Akun',
-                    onTap: () {},
+                  // Akun
+                  buildGridItem(
+                    image: 'assets/akun.png',
+                    title: 'Akun',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileScreen()),
+                    ),
                   ),
-                  _buildMenuItem(
-                    icon: 'assets/bantuan.png',
-                    label: 'Bantuan',
-                    onTap: () {},
+                  // Bantuan
+                  buildGridItem(
+                    image: 'assets/bantuan.png',
+                    title: 'Bantuan',
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BantuanScreen()),
+                    ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildMenuItem({
-    required String icon,
-    required String label,
+  // Function to build each grid item (Pengajuan, Cek Status, etc.)
+  Widget buildGridItem({
+    required String image,
+    required String title,
     required VoidCallback onTap,
   }) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
+          borderRadius: BorderRadius.circular(20.0),
+          boxShadow: const [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 5,
-              offset: Offset(0, 3),
+              color: Colors.black12,
+              blurRadius: 10.0,
+              spreadRadius: 1.0,
             ),
           ],
         ),
@@ -96,15 +121,17 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              icon,
-              height: 40,
+              image,
+              height: 50,
+              color: const Color(0xFF4FC8ED), // Color 4FC8ED for icons
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
-              label,
-              style: TextStyle(
+              title,
+              style: const TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
           ],

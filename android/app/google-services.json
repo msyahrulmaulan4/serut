@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "846346380405",
+    "firebase_url": "https://serut-5f456-default-rtdb.firebaseio.com",
+    "project_id": "serut-5f456",
+    "storage_bucket": "serut-5f456.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846346380405:android:b0da95b5b1a84de473c43c",
+        "android_client_info": {
+          "package_name": "com.example.serut"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHzW6cqVK75wulRVbjgHSrOJ37NGmKy7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
